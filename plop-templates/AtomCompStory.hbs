@@ -1,0 +1,22 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+
+import { {{pascalCase name}} } from './{{pascalCase name}}';
+
+const meta = {
+  title: 'Shared/Components/{{pascalCase name}}',
+  component: {{pascalCase name}},
+  parameters: {
+    layout: 'centered',
+  },
+  args: {
+    onClick: fn()
+  }
+} satisfies Meta<typeof {{pascalCase name}}>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+
+};
