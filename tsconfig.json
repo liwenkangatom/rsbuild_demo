@@ -24,6 +24,7 @@
       "@components/*": ["./src/shared/components/*"],
       "@hooks/*": ["./src/shared/hooks/*"],
       "@utils/*": ["./src/shared/utils/*"],
+      "@themes/*": ["./src/shared/themes/*"],
       "@asserts/*": ["./src/asserts/*"],
       "@features/*": ["./src/features/*"],
     }
