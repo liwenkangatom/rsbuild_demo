@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
 import { useState } from 'react';
 import { deleteTodo, selectLoading, selectTodosNumber } from './todosSlice';
 

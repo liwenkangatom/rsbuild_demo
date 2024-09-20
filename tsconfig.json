@@ -20,15 +20,12 @@
     "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
+      "@app/*": ["./src/app/*"],
+      "@components/*": ["./src/shared/components/*"],
+      "@hooks/*": ["./src/shared/hooks/*"],
+      "@utils/*": ["./src/shared/utils/*"],
       "@asserts/*": ["./src/asserts/*"],
-      "@store/*": ["./src/store/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@layouts/*": ["./src/layouts/*"],
-      "@services/*": ["./src/services/*"],
-      "@utils/*": ["./src/utils/*"],
       "@features/*": ["./src/features/*"],
-      "@hooks/*": ["./src/hooks/*"]
     }
   },
   "include": ["src"]
