@@ -13,4 +13,9 @@ export default defineConfig({
       },
     }),
   ],
+  performance: {
+    chunkSplit: {
+      strategy: 'split-by-experience',
+    },
+  },
 });
