@@ -1,11 +1,9 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-interface Item {
-  id: string;
-  text: string;
-}
+import type { TodoItemEntity } from './types';
+
 interface TodoState {
   loading: boolean;
-  todos: Item[];
+  todos: TodoItemEntity[];
 }
 export const todosSlice = createSlice({
   name: 'todos',
@@ -14,8 +12,11 @@ export const todosSlice = createSlice({
     todos: [],
   } satisfies TodoState as TodoState,
   reducers: (create) => ({
-    deleteTodo: create.reducer<number>((state, action) => {
-      state.todos.splice(action.payload, 1);
+    deleteTodo: create.reducer<string>((state, action) => {
+      const index = state.todos.findIndex((todo) => todo.id === action.payload);
+      if (index > -1) {
+        state.todos.splice(index, 1);
+      }
     }),
     addTodo: create.preparedReducer(
       (text: string) => {
@@ -24,18 +25,9 @@ export const todosSlice = createSlice({
       },
       // action type is inferred from prepare callback
       (state, action) => {
-        state.todos.push(action.payload);
+        state.todos.unshift(action.payload);
       },
     ),
   }),
-  selectors: {
-    selectLoading: (state) => {
-      return state.loading;
-    },
-    selectTodosNumber: (state) => {
-      return state.todos.length;
-    },
-  },
 });
 export const { deleteTodo, addTodo } = todosSlice.actions;
-export const { selectLoading, selectTodosNumber } = todosSlice.selectors;

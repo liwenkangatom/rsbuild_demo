@@ -4,7 +4,11 @@ import { fn } from '@storybook/test';
 import { {{pascalCase name}} } from './{{pascalCase name}}';
 
 const meta = {
-  title: 'Shared/Components/{{pascalCase name}}',
+  {{#if feature}}
+  title: 'Features/{{pascalCase feature}}/{{pascalCase name}}',
+  {{else}}
+  title: 'Shared/{{pascalCase name}}',
+  {{/if}}
   component: {{pascalCase name}},
   parameters: {
     layout: 'centered',
