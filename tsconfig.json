@@ -26,7 +26,7 @@
       "@utils/*": ["./src/shared/utils/*"],
       "@themes/*": ["./src/shared/themes/*"],
       "@asserts/*": ["./src/asserts/*"],
-      "@features/*": ["./src/features/*"],
+      "@features/*": ["./src/features/*"]
     }
   },
   "include": ["src"]

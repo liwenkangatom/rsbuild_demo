@@ -1,14 +1,14 @@
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import './app.css';
+import { ThemeProvider } from '@/shared/themes/theme';
 import { router } from './router';
 import { store } from './store';
-import { ThemeProvider } from '@/shared/themes/theme';
 
 export const App = () => {
   return (
     <Provider store={store}>
-      <ThemeProvider >
+      <ThemeProvider>
         <RouterProvider router={router} />
       </ThemeProvider>
     </Provider>

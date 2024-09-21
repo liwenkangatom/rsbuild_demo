@@ -1,5 +1,5 @@
+import { act, renderHook } from '@testing-library/react';
 import { usePetItem } from './usePetItem';
-import { renderHook, act } from '@testing-library/react';
 
 describe('usePetItem', () => {
   test('click add', () => {
@@ -14,6 +14,6 @@ describe('usePetItem', () => {
     act(() => {
       result.current.reducePet();
     });
-    expect(result.current.petTitle).toBe("Reduce_0")
+    expect(result.current.petTitle).toBe('Reduce_0');
   });
 });

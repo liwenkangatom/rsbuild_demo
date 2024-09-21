@@ -1,6 +1,6 @@
 import {
-  createContext,
   type PropsWithChildren,
+  createContext,
   useCallback,
   useContext,
   useEffect,
@@ -16,16 +16,20 @@ type ThemeContextProps = {
 const ThemeContext = createContext<ThemeContextProps>({});
 const getTheme = (stringTheme: string | null) => {
   switch (stringTheme) {
-    case "dark": return "dark" as const;
-    case "light": return "light" as const;
-    case "third": return "third" as const;
-    default: return "light" as const;
+    case 'dark':
+      return 'dark' as const;
+    case 'light':
+      return 'light' as const;
+    case 'third':
+      return 'third' as const;
+    default:
+      return 'light' as const;
   }
-}
+};
 export const ThemeProvider = ({ children }: PropsWithChildren) => {
   const [theme, setTheme] = useState<ThemeType>('light');
   const [followSystem, setFollowSystem] = useState(true);
-  
+
   const setDataTheme = useCallback((theme: ThemeType) => {
     document.documentElement.setAttribute('data-theme', theme);
     setTheme(theme);
@@ -35,7 +39,9 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
     const updateTheme = () => {
-      const storedTheme = getTheme(localStorage.getItem('selectedTheme')) as ThemeType;
+      const storedTheme = getTheme(
+        localStorage.getItem('selectedTheme'),
+      ) as ThemeType;
       if (followSystem) {
         switch (true) {
           case prefersDark.matches:
@@ -49,9 +55,8 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
             break;
         }
       } else {
-        setDataTheme(storedTheme)
+        setDataTheme(storedTheme);
       }
-
     };
 
     updateTheme();
@@ -66,7 +71,9 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
   }, [followSystem, setDataTheme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme: setDataTheme, setFollowSystem }}>
+    <ThemeContext.Provider
+      value={{ theme, setTheme: setDataTheme, setFollowSystem }}
+    >
       {children}
     </ThemeContext.Provider>
   );

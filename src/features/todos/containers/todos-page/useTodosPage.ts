@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHooks';
-import type { TodoItemEntity } from '../../types';
+import { useEffect, useRef, useState } from 'react';
 import {
   selectTodos,
   selectTodosCount,
   selectTodosLoading,
 } from '../../selectors';
 import { addTodo, deleteTodo } from '../../todosSlice';
-import { useEffect, useRef, useState } from 'react';
+import type { TodoItemEntity } from '../../types';
 
 export const useTodosPage = () => {
   const todoListRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ export const useTodosPage = () => {
 
   const addTodoHandler = (item: TodoItemEntity) => {
     dispatch(addTodo(item.text));
-    setNeedScroll(true)
+    setNeedScroll(true);
   };
   const deleteTodoHandler = (id: string) => {
     dispatch(deleteTodo(id));

@@ -1,6 +1,6 @@
-import { useButton } from './useButton';
 import Add from '@asserts/svgs/add.svg';
 import Reduce from '@asserts/svgs/reduce.svg';
+import { useButton } from './useButton';
 export type ButtonPropsType = {
   // props type
   onAdd: () => void;

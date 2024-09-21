@@ -1,7 +1,7 @@
-import { combineSlices, configureStore } from '@reduxjs/toolkit';
 import { api } from '@features/api/apiSlice';
 import { counterSlice } from '@features/counter/counterSlice';
 import { todosSlice } from '@features/todos/todosSlice';
+import { combineSlices, configureStore } from '@reduxjs/toolkit';
 
 const rootReducer = combineSlices(api, counterSlice, todosSlice);
 
