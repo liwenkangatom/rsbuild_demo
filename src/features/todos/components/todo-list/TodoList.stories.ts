@@ -9,7 +9,18 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  args: {},
+  args: {
+    todoList: [
+      {
+        id: '1',
+        text: 'have this todo',
+      },
+      {
+        id: '2',
+        text: 'have this todo 2',
+      },
+    ],
+  },
 } satisfies Meta<typeof TodoList>;
 
 export default meta;

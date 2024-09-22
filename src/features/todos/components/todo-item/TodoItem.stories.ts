@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { TodoItem } from './TodoItem';
+import { fn } from '@storybook/test';
+import { delay } from 'msw';
 
 const meta = {
   title: 'Features/Todos/TodoItem',
@@ -8,7 +10,12 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  args: {},
+  args: {
+    text: 'add this todo to test',
+    onDelete: fn(async () => {
+      await delay(1000);
+    }),
+  },
 } satisfies Meta<typeof TodoItem>;
 
 export default meta;

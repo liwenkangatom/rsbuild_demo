@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AddTodo } from './AddTodo';
+import { fn } from '@storybook/test';
+import { delay } from 'msw';
 
 const meta = {
   title: 'Features/Todos/AddTodo',
@@ -8,7 +10,11 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  args: {},
+  args: {
+    onAddTodo: fn(async () => {
+      await delay(1000)
+    }),
+  },
 } satisfies Meta<typeof AddTodo>;
 
 export default meta;

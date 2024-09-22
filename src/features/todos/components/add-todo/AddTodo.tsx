@@ -4,9 +4,11 @@ import { nanoid } from '@reduxjs/toolkit';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { type InferType, object, string } from 'yup';
 import type { TodoItemEntity } from '../../types';
+import { useState } from 'react';
+import Loading from '@asserts/svgs/loading.svg';
 
 export type AddTodoPropsType = {
-  onAddTodo?: (todo: TodoItemEntity) => void;
+  onAddTodo?: (todo: TodoItemEntity) => Promise<void>;
   placeholder?: string;
 };
 const schema = object({
@@ -15,6 +17,7 @@ const schema = object({
 
 export const AddTodo = (props: AddTodoPropsType) => {
   const { onAddTodo, placeholder = 'Add todo here' } = props;
+  const [isAdding, setIsAdding] = useState(false);
 
   const {
     register,
@@ -23,12 +26,14 @@ export const AddTodo = (props: AddTodoPropsType) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
+    setIsAdding(true);
     !!onAddTodo &&
-      onAddTodo({
+      (await onAddTodo({
         id: nanoid(),
         text: data.todoText,
-      });
+      }));
+    setIsAdding(false);
     reset();
   });
 
@@ -49,6 +54,14 @@ export const AddTodo = (props: AddTodoPropsType) => {
       <button type="submit" className=" rounded-full size-6">
         <Add className=" hover:scale-150 active:scale-125 transition-transform size-6 fill-purple-900 shadow-sm rounded-full" />
       </button>
+      {isAdding && (
+        <>
+          <div className=" absolute top-0 left-0 size-full bg-purple-950 bg-opacity-30  rounded-md" />
+          <div className="absolute top-0 left-0 size-full flex justify-center items-center">
+            <Loading className=" fill-purple-950 size-6 animate-spin" />
+          </div>
+        </>
+      )}
     </form>
   );
 };

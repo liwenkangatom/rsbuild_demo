@@ -3,8 +3,13 @@ import { TodoList } from '../../components/todo-list/TodoList';
 import { useTodosPage } from './useTodosPage';
 
 export const TodosPage = () => {
-  const { todos, todoListRef, addTodoHandler, deleteTodoHandler } =
-    useTodosPage();
+  const {
+    todos,
+    todoListRef,
+    addTodoHandler,
+    deleteTodoHandler,
+    todosLoading,
+  } = useTodosPage();
 
   return (
     <div className=" h-svh w-full flex justify-center items-center content-center">
@@ -12,9 +17,13 @@ export const TodosPage = () => {
         <AddTodo onAddTodo={addTodoHandler} />
         <div
           ref={todoListRef}
-          className="w-full h-96 overflow-auto snap-y px-4"
+          className=" relative w-full h-96 overflow-auto snap-y px-4"
         >
-          <TodoList todoList={todos} onDeleteTodo={deleteTodoHandler} />
+          <TodoList
+            todoList={todos}
+            isLoading={todosLoading}
+            onDeleteTodo={deleteTodoHandler}
+          />
         </div>
       </div>
     </div>
